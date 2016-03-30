@@ -219,7 +219,7 @@ public class PlateauFrame extends JFrame{
 
 		if(importance==2){
 			c=Color.RED;
-			StyleConstants.setFontSize(style, 19);
+			StyleConstants.setFontSize(style, 16);
 		}
 		if(importance==1){
 			c=Color.BLUE;

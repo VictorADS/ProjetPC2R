@@ -287,10 +287,11 @@ public class Client {
 				System.out.println("Serveur : " + s); //
 				String msg = "Serveur : Fin de la phase de reflexion !\n";
 				PlateauFrame f = (PlateauFrame) fenetre;
+				f.setButtonPhase2();
 				JOptionPane.showMessageDialog(null,
 						"Bravo, tu as ete le premier a trouve !\nDebut de la phase d'enchere !", "GL",
 						JOptionPane.INFORMATION_MESSAGE);
-				f.setButtonPhase2();
+
 				updateChat(msg, 2);
 			}
 			if (s.startsWith("ILATROUVE")) {
@@ -300,19 +301,21 @@ public class Client {
 						+ " coups !\n";
 				updateChat(msg, 2);
 				PlateauFrame f = (PlateauFrame) fenetre;
+				f.setButtonPhase2();
 				JOptionPane.showMessageDialog(null,
 						"Debut de la phase d'enchere !", "GL",
 						JOptionPane.INFORMATION_MESSAGE);
-				f.setButtonPhase2();
+
 			}
 			if (s.startsWith("FINREFLEXION")) {
 				System.out.println("Serveur : " + s);
 				String msg = "Serveur : Fin de la phase de reflexion !\n";
 				PlateauFrame f = (PlateauFrame) fenetre;
+				f.setButtonPhase2();
 				JOptionPane.showMessageDialog(null,
 						"Debut de la phase d'enchere !", "GL",
 						JOptionPane.INFORMATION_MESSAGE);
-				f.setButtonPhase2();
+
 				updateChat(msg, 2);
 			}
 			if (s.startsWith("VALIDATION")) {
@@ -343,9 +346,10 @@ public class Client {
 				PlateauFrame f = (PlateauFrame) fenetre;
 				if (string[1].equals(name)) {
 					System.out.println("Tu es actif");
+					f.setButtonPhase3Actif();
 					JOptionPane
 							.showMessageDialog(null, "Propose ta solution !");
-					f.setButtonPhase3Actif();
+
 				} else {
 					f.setButtonPhase3NonActif();
 					System.out.println("Pas actif");
