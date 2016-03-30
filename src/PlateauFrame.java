@@ -132,7 +132,9 @@ public class PlateauFrame extends JFrame{
 	    this.setResizable(false);
 		this.setVisible(true);
 	}
-
+//	public void updateGraphics(Plateau p){
+//		
+//	}
 	public void updateGraphics(Plateau p){ //Appel lorsque on veut juste afficher les mur
 		plateau.removeAll();
 		int top=1;
@@ -486,7 +488,7 @@ public class PlateauFrame extends JFrame{
 					e.printStackTrace();
 				}
 			}
-
+			updateGraphics(p);
 		}
 
 	}

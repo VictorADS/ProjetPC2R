@@ -60,6 +60,7 @@ public class Client {
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	public void deconnexion() { // function de deconnexion
 		try {
 			System.out.println("Client : deconnexion\n");
@@ -105,26 +106,29 @@ public class Client {
 			switch (side) {
 			case H:
 				plateau.getCase(x, y).setTop(true);
-				plateau.getCase(x - 1, y).setBottom(true);
+				if(x -1 >=0)
+					plateau.getCase(x - 1, y).setBottom(true);
 				break;
 			case B:
 				plateau.getCase(x, y).setBottom(true);
-				plateau.getCase(x + 1, y).setTop(true);
+				if(x + 1 <= 15)
+					plateau.getCase(x + 1, y).setTop(true);
 				break;
 			case D:
 				plateau.getCase(x, y).setRight(true);
-				plateau.getCase(x, y + 1).setLeft(true);
+				if(y + 1 <= 15)
+					plateau.getCase(x, y + 1).setLeft(true);
 				break;
 			case G:
 				plateau.getCase(x, y).setLeft(true);
-				plateau.getCase(x, y - 1).setRight(true);
+				if(y - 1 >= 0)
+					plateau.getCase(x, y - 1).setRight(true);
 				break;
 			default:
 				break;
 			}
 
 		}
-		backupplateau = plateau;
 		PlateauFrame f = (PlateauFrame) fenetre;
 		f.updateGraphics(plateau);
 	}
@@ -179,6 +183,7 @@ public class Client {
 		plateau.setRobotR(rouge);
 		plateau.setRobotV(vert);
 		plateau.setRobotJ(jaune);
+		backupplateau = plateau;
 		PlateauFrame f = (PlateauFrame) fenetre;
 		f.updateGraphics(plateau);
 	}
@@ -211,6 +216,7 @@ public class Client {
 			this.in = in;
 		}
 
+		@SuppressWarnings("deprecation")
 		public void run() {
 			String s = "";
 			while (true) {
@@ -258,8 +264,8 @@ public class Client {
 				updateChat(msg, 2);
 			}
 			if (s.startsWith("VAINQUEUR")) {
-				System.out.println("Serveur : Fin de la session. Score final affiché !");
-				String msg = "Serveur : Fin de la session. Score final affiché ! \n";
+				System.out.println("Serveur : Fin de la session. Score final affichï¿½ !");
+				String msg = "Serveur : Fin de la session. Score final affichï¿½ ! \n";
 				updateChat(msg, 2);
 				updateScore(string[1]);
 				PlateauFrame f = (PlateauFrame) fenetre;
@@ -278,11 +284,11 @@ public class Client {
 				updateChat(msg, 2);
 			}
 			if (s.startsWith("TUASTROUVE")) {
-				System.out.println("Serveur : " + s); // TODO Smthing ?
+				System.out.println("Serveur : " + s); //
 				String msg = "Serveur : Fin de la phase de reflexion !\n";
 				PlateauFrame f = (PlateauFrame) fenetre;
 				JOptionPane.showMessageDialog(null,
-						"Bravo, tu as été le premier a trouvé !\nDebut de la phase d'enchere !", "GL",
+						"Bravo, tu as ete le premier a trouve !\nDebut de la phase d'enchere !", "GL",
 						JOptionPane.INFORMATION_MESSAGE);
 				f.setButtonPhase2();
 				updateChat(msg, 2);
