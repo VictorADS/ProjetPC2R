@@ -223,9 +223,9 @@ public class Client {
 				try {
 					s=in.readLine();
 					System.out.println("SYSTEM : "+s);
-					if(s.charAt(0)==0){
-						s=s.substring(1, s.length());
-						System.out.println("First char at 0 is null");
+					if(s==null){
+						System.out.println("Le serveur s'est étéint ");
+						this.stop();
 					}
 					traitement(s);
 					yield();

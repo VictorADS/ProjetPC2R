@@ -9,13 +9,9 @@ import Plateau.Plateau;
 
 public class Main {
 	public static void main(String [] args){
-		Client c = new Client("132.227.112.240", 2016);
-	//Client c2= new Client("132.227.112.240", 2016);
+	//	Client c = new Client("132.227.112.240", 2016);
+		Client c2= new Client("localhost", 2016);
 
-//		Client c2 = new Client("132.227.112.226", 2016);
-
-	//	Client c = new Client("127.0.0.1", 2016);
-//
 //		System.out.println(Thread.activeCount());
 //		PlateauFrame f=new PlateauFrame(null);
 //		Plateau p =new Plateau();
