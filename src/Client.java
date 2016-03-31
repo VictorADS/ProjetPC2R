@@ -89,6 +89,7 @@ public class Client {
 
 	public void solution(String dep) {
 		System.out.println("Client : solution");
+		soltoPrint=dep;
 		out.print("SOLUTION/" + name + "/" + dep + "/\n");
 		out.flush();
 	}
@@ -222,7 +223,6 @@ public class Client {
 			while (true) {
 				try {
 					s=in.readLine();
-					System.out.println("SYSTEM : "+s);
 					if(s==null){
 						System.out.println("Le serveur s'est étéint ");
 						this.stop();
@@ -360,6 +360,7 @@ public class Client {
 				String msg = "Serveur : " + string[1] + " propose "
 						+ string[2] + " !\n";
 				soltoPrint = string[2];
+				System.out.println("La solution que j'ai recu est "+soltoPrint);
 				updateChat(msg, 2);
 			}
 			if (s.startsWith("BONNE")) {

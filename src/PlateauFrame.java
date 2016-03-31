@@ -216,10 +216,8 @@ public class PlateauFrame extends JFrame{
 		StyledDocument doc=chat.getStyledDocument();
 		Style style=chat.addStyle("Im a stytle", null);
 		Color c =Color.BLACK;
-
 		if(importance==2){
 			c=Color.RED;
-			StyleConstants.setFontSize(style, 16);
 		}
 		if(importance==1){
 			c=Color.BLUE;
@@ -476,19 +474,16 @@ public class PlateauFrame extends JFrame{
 			moves[j]=solution.charAt(i)+""+solution.charAt(i+1);
 			j++;
 		}
-		int nbpas=0;
 		for(String s : moves){
 			while(p.canMove(s)){
-				nbpas++;
-				if(nbpas%2==0)
-				updateGraphics(p);
-				try {
-					Thread.sleep(300);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
 			}
 			updateGraphics(p);
+
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
 
 	}
