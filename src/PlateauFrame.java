@@ -64,13 +64,13 @@ public class PlateauFrame extends JFrame{
 
 		this.c=c;
 		this.setTitle("The Game");
-		this.setSize(1200, 920);
+		this.setSize(1040,840);
 		this.setLocationRelativeTo(null);
 	    this.setLayout(new BorderLayout());
 	    this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
 	    JPanel panholderright=new JPanel();//Holds everything in the right
-	    panholderright.setPreferredSize(new Dimension(400,1000));
+	    panholderright.setPreferredSize(new Dimension(375,800));
         panholderright.setLayout(new GridLayout(3, 1));
         
         buttonpanel =new JPanel(); //Holds the action button
@@ -94,7 +94,7 @@ public class PlateauFrame extends JFrame{
         caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE); //Auto scroll
         chat.setContentType("text/plain");
         chat.setEditable(false);
-        chat.setText("Bienvenue dans le salon de discussion, "+c.getName()+".\n");
+       // chat.setText("Bienvenue dans le salon de discussion, "+c.getName()+".\n");
         JScrollPane scrollchat=new JScrollPane(chat);
         JTextField cmd=new JTextField();
         cmd.addKeyListener(new EnterListener(cmd));
@@ -121,8 +121,6 @@ public class PlateauFrame extends JFrame{
         //PLateau panel
         plateau=new JPanel();
         plateau.setLayout(new GridLayout(16, 16));
-        plateau.setBackground(Color.WHITE);
-        
         panholderright.add(buttonpanel);
         panholderright.add(scoreboard);
         panholderright.add(chatholder);
@@ -176,7 +174,7 @@ public class PlateauFrame extends JFrame{
 					tmp.setIcon(icon);
 					tmp.setDisabledIcon(icon);
 				}
-				tmp.setPreferredSize(new Dimension(49,49));
+				tmp.setPreferredSize(new Dimension(40,40));
 				tmp.setBorder(new MatteBorder(top, left, bot, right,new Color(0,0,0)));
 				plateau.add(tmp);
 				bot=top=left=right=1;
