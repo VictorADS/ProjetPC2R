@@ -273,6 +273,8 @@ public class Client {
 			}
 			if (s.startsWith("TOUR")) {
 				System.out.println("Serveur : l'enigme est " + string[1]);
+				System.out.println("Serveur : Les scores  sont " + string[2]);
+
 				updateScore(string[2]);
 				updatePlateau(string[1]);
 				PlateauFrame f = (PlateauFrame) fenetre;
@@ -338,9 +340,14 @@ public class Client {
 			}
 			if (s.startsWith("FINENCHERE")) {
 				System.out.println("Serveur : " + s);
-				String msg = "Serveur : Fin de la phase d'enchere. "
+				String msg="";
+				if(string[1].equals("")){
+					msg="Serveur : Personne n'a encheri lors de cette partie.\n";
+				}else{
+					msg= "Serveur : Fin de la phase d'enchere. "
 						+ string[1] + " pense avoir trouve en " + string[2]
 						+ " coups !\n";
+				}
 				updateChat(msg, 2);
 
 				PlateauFrame f = (PlateauFrame) fenetre;

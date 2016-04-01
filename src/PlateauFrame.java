@@ -94,7 +94,7 @@ public class PlateauFrame extends JFrame{
         caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE); //Auto scroll
         chat.setContentType("text/plain");
         chat.setEditable(false);
-       // chat.setText("Bienvenue dans le salon de discussion, "+c.getName()+".\n");
+        chat.setText("Bienvenue dans le salon de discussion, "+c.getName()+".\n");
         JScrollPane scrollchat=new JScrollPane(chat);
         JTextField cmd=new JTextField();
         cmd.addKeyListener(new EnterListener(cmd));
@@ -130,9 +130,6 @@ public class PlateauFrame extends JFrame{
 	    this.setResizable(false);
 		this.setVisible(true);
 	}
-//	public void updateGraphics(Plateau p){
-//		
-//	}
 	public void updateGraphics(Plateau p){ //Appel lorsque on veut juste afficher les mur
 		plateau.removeAll();
 		int top=1;
@@ -208,7 +205,8 @@ public class PlateauFrame extends JFrame{
 		s+="</html>";
 		JLabel scorelab=new JLabel(s,SwingConstants.RIGHT);
 		scorepanel.add(scorelab);
-		this.setVisible(true);
+		scorepanel.revalidate();
+		scorepanel.repaint();
 	}
 	public void updateChat(String s,int importance){//Importance = 0 => User; =1 => Mineur ; =2 => Majeur
 		StyledDocument doc=chat.getStyledDocument();
