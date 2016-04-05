@@ -1,7 +1,6 @@
 package Plateau;
 
 import java.awt.Point;
-import java.util.ArrayList;
 
 public class Plateau {
 	private Point cible;

@@ -1,3 +1,4 @@
+package Frames;
 import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -14,14 +15,16 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import Client.Client;
 
-
+/*
+ * 
+ */
 public class AccueilFrame  extends JFrame{
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	private Client c;
+	
 	public AccueilFrame(Client c){
 		this.c=c;
 		this.setTitle("Identification");
@@ -65,11 +68,19 @@ public class AccueilFrame  extends JFrame{
 	    this.add(panholder,BorderLayout.CENTER);
 		this.setVisible(true);
 	}
+	
+	
+	/*
+	 * Listener qui permet d'envoyer une requete de connexion si
+	 * le texte n'est pas vide avec la touche "ENTER"
+	 */
 	class EnterListener implements KeyListener{
 		private JTextField j;
+		
 		public  EnterListener(JTextField j) {
 			this.j=j;
 		}
+		
 		@Override
 		public void keyTyped(KeyEvent e) {
 			

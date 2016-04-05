@@ -1,3 +1,4 @@
+package Frames;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -34,14 +35,12 @@ import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
+import Client.Client;
 import Plateau.Case;
 import Plateau.Plateau;
 
 
-public class PlateauFrame extends JFrame{
-	/**
-	 * 
-	 */
+public class PlateauFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private Client c;
 	private JPanel scorepanel; //Panel qui contient les score
@@ -68,26 +67,32 @@ public class PlateauFrame extends JFrame{
 		this.setLocationRelativeTo(null);
 	    this.setLayout(new BorderLayout());
 	    this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-
-	    JPanel panholderright=new JPanel();//Holds everything in the right
+	    
+	    //Holds everything in the right
+	    JPanel panholderright=new JPanel();
 	    panholderright.setPreferredSize(new Dimension(375,800));
         panholderright.setLayout(new GridLayout(3, 1));
         
-        buttonpanel =new JPanel(); //Holds the action button
+        //Holds the action button
+        buttonpanel =new JPanel(); 
         buttonpanel.setLayout(new BoxLayout(buttonpanel, BoxLayout.PAGE_AXIS));
         JLabel deb=new JLabel("Veuillez attendre le debut d'une autre partie.");
         buttonpanel.add(deb);
         
-        JPanel scoreboard=new JPanel();//Holds label + scoreboard
+        //Holds nbturn + scoreboard
+        JPanel scoreboard=new JPanel();
         scoreboard.setLayout(new BorderLayout());
         tab=new JLabel("Tableau des scores :",SwingConstants.LEFT);
         scoreboard.add(tab,BorderLayout.NORTH);
-        scorepanel=new JPanel(); //holds the score
+        
+        //holds the score
+        scorepanel=new JPanel(); 
         scorepanel.setLayout(new BoxLayout(scorepanel, BoxLayout.PAGE_AXIS));
         JScrollPane scroll=new JScrollPane(scorepanel);
         scoreboard.add(scroll);
-        
-        JPanel chatholder=new JPanel(); //Hold the chatlog
+      
+        //Hold the chatlog
+        JPanel chatholder=new JPanel(); 
         chatholder.setLayout(new BoxLayout(chatholder, BoxLayout.PAGE_AXIS));
         chat=new JTextPane();
         DefaultCaret caret = (DefaultCaret)chat.getCaret();
@@ -97,7 +102,7 @@ public class PlateauFrame extends JFrame{
         chat.setText("Bienvenue dans le salon de discussion, "+c.getName()+".\n");
         JScrollPane scrollchat=new JScrollPane(chat);
         JTextField cmd=new JTextField();
-        cmd.addKeyListener(new EnterListener(cmd));
+        cmd.addKeyListener(new EnterListener(cmd)); // It can send the request by pressing ENTER key
         JButton send=new JButton("Send");
         send.addActionListener(new ActionListener() {
 			
@@ -130,6 +135,7 @@ public class PlateauFrame extends JFrame{
 	    this.setResizable(false);
 		this.setVisible(true);
 	}
+	
 	public void updateGraphics(Plateau p){ //Appel lorsque on veut juste afficher les mur
 		plateau.removeAll();
 		int top=1;
@@ -180,6 +186,7 @@ public class PlateauFrame extends JFrame{
 		plateau.revalidate();
 		plateau.repaint();
 	}
+	
 	public ImageIcon getAppropriateIcon(Plateau p){
 		switch(p.getColor()){
 		case R :
@@ -195,6 +202,7 @@ public class PlateauFrame extends JFrame{
 			return null;
 		}
 	}
+	
 	public void updateScore(ArrayList<String> name,ArrayList<Integer> score,int tour){
 		tab.setText("Tableau des scores : ("+tour+"e tour)");
 		scorepanel.removeAll();
@@ -208,6 +216,7 @@ public class PlateauFrame extends JFrame{
 		scorepanel.revalidate();
 		scorepanel.repaint();
 	}
+	
 	public void updateChat(String s,int importance){//Importance = 0 => User; =1 => Mineur ; =2 => Majeur
 		StyledDocument doc=chat.getStyledDocument();
 		Style style=chat.addStyle("Im a stytle", null);
@@ -225,6 +234,7 @@ public class PlateauFrame extends JFrame{
 			  System.err.println("Bad Location. Exception:" + ble);
 		}
 	}
+	
 	public void setButtonPhase0(){
 		buttonpanel.removeAll();
         JLabel deb=new JLabel("Veuillez attendre le debut d'une autre partie.");
@@ -232,6 +242,7 @@ public class PlateauFrame extends JFrame{
         buttonpanel.revalidate();
         buttonpanel.repaint();
 	}
+	
 	public void setButtonPhase1(){
 		buttonpanel.removeAll();
 		car=new JLabel("Temps restant : "+300);
@@ -253,6 +264,7 @@ public class PlateauFrame extends JFrame{
 		buttonpanel.revalidate();
 		buttonpanel.repaint();
 	}
+	
 	public void setButtonPhase2(){
 		buttonpanel.removeAll();
 		car=new JLabel("Temps restant : "+30);
@@ -275,6 +287,7 @@ public class PlateauFrame extends JFrame{
 		buttonpanel.revalidate();
 		buttonpanel.repaint();
 	}
+	
 	public void setButtonPhase3Actif(){
 		Border defaultborder=UIManager.getBorder("Button.border");
 		buttonpanel.removeAll();
@@ -375,8 +388,6 @@ public class PlateauFrame extends JFrame{
 			}
 		});
 		
-		
-		
 		//Contient les fleche directionnelle
 		JPanel arrow=new JPanel();
 		arrow.setLayout(new BoxLayout(arrow, BoxLayout.PAGE_AXIS));
@@ -459,6 +470,7 @@ public class PlateauFrame extends JFrame{
 		buttonpanel.revalidate();
 		buttonpanel.repaint();	
 	}
+	
 	public void showAnimation(String solution,Plateau p){
 		buttonpanel.removeAll();
 		buttonpanel.revalidate();
@@ -505,6 +517,7 @@ public class PlateauFrame extends JFrame{
 		}
 		solPrint.setText("Votre solution : "+styledString);
 	}
+	
 	public void setButtonPhase3NonActif(){
 		buttonpanel.removeAll();
 		JLabel car=new JLabel("Temps restant :  "+60);
@@ -513,12 +526,12 @@ public class PlateauFrame extends JFrame{
 		buttonpanel.revalidate();
 		buttonpanel.repaint();
 	}
+	
 	public void startCountDown(JLabel car, int time){
 		chrono=new ChronoThread(car,time);
 		chrono.start();
 	}
-	
-	
+
 	/* Thread qui calcule le temps du countdown */
 	class ChronoThread extends Thread{
 		private JLabel car;
@@ -549,7 +562,6 @@ public class PlateauFrame extends JFrame{
 			}
 		}
 	}
-	
 	
 	/* KeyListener pour que la toucher ENTREE envoye le message du chat*/
 	class EnterListener implements KeyListener{
