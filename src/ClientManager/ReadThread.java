@@ -70,7 +70,6 @@ class ReadThread extends Thread {
 				c.updateScore(string[1]);
 				PlateauFrame f = (PlateauFrame) c.getFenetre();
 				f.setButtonPhase0();
-				f.showAnimation(c.getsoltoPrint(), c.getPlateau());
 			}
 			if (s.startsWith("TOUR")) {
 				System.out.println("Serveur : l'enigme est " + string[1]);
