@@ -35,9 +35,9 @@ import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
-import Client.Client;
-import Plateau.Case;
-import Plateau.Plateau;
+import ClientManager.Client;
+import PlateauManager.Case;
+import PlateauManager.Plateau;
 
 
 public class PlateauFrame extends JFrame {
@@ -58,8 +58,8 @@ public class PlateauFrame extends JFrame {
 
 	public PlateauFrame(Client c){
 		arrayofint=new String[19];
-		for(int i=0;i<19;i++)
-			arrayofint[i]=""+i;
+		for(int i=1;i<=19;i++)
+			arrayofint[i-1]=""+i;
 
 		this.c=c;
 		this.setTitle("The Game");
@@ -156,27 +156,49 @@ public class PlateauFrame extends JFrame {
 					
 				JButton tmp=new JButton("");
 				tmp.setEnabled(false);
-				if(p.getRobotB()!=null && i==p.getRobotB().getX() && j==p.getRobotB().getY()){
-					tmp.setIcon(new ImageIcon("image/blue.png"));
-					tmp.setDisabledIcon(new ImageIcon("image/blue.png"));
-				}
-				if(p.getRobotV()!=null && i==p.getRobotV().getX() && j==p.getRobotV().getY()){
-					tmp.setIcon(new ImageIcon("image/green.png"));
-					tmp.setDisabledIcon(new ImageIcon("image/green.png"));
-				}
-				if(p.getRobotR()!=null && i==p.getRobotR().getX() && j==p.getRobotR().getY()){
-					tmp.setIcon(new ImageIcon("image/red.png"));
-					tmp.setDisabledIcon(new ImageIcon("image/red.png"));
-				}
-				if(p.getRobotJ()!=null && i==p.getRobotJ().getX() && j==p.getRobotJ().getY()){
-					tmp.setIcon(new ImageIcon("image/yellow.png"));
-					tmp.setDisabledIcon(new ImageIcon("image/yellow.png"));
-				}
 				if(p.getCible()!=null && i==p.getCible().getX() && j==p.getCible().getY()){
 					ImageIcon icon=getAppropriateIcon(p);
 					tmp.setIcon(icon);
 					tmp.setDisabledIcon(icon);
 				}
+				
+				if(p.robotinCible(Plateau.Color.B) && i==p.getRobotB().getX() && j==p.getRobotB().getY()){
+					tmp.setIcon(new ImageIcon("image/bluewin.png"));
+					tmp.setDisabledIcon(new ImageIcon("image/bluewin.png"));
+				}
+				else if(p.getRobotB()!=null && i==p.getRobotB().getX() && j==p.getRobotB().getY()){
+					tmp.setIcon(new ImageIcon("image/blue.png"));
+					tmp.setDisabledIcon(new ImageIcon("image/blue.png"));
+				}
+
+				if(p.robotinCible(Plateau.Color.V) && i==p.getRobotV().getX() && j==p.getRobotV().getY()){
+					tmp.setIcon(new ImageIcon("image/greenwin.png"));
+					tmp.setDisabledIcon(new ImageIcon("image/greenwin.png"));
+				}
+				else if(p.getRobotV()!=null && i==p.getRobotV().getX() && j==p.getRobotV().getY()){
+					tmp.setIcon(new ImageIcon("image/green.png"));
+					tmp.setDisabledIcon(new ImageIcon("image/green.png"));
+				}
+
+				if(p.robotinCible(Plateau.Color.R) && i==p.getRobotR().getX() && j==p.getRobotR().getY()){
+					tmp.setIcon(new ImageIcon("image/redwin.png"));
+					tmp.setDisabledIcon(new ImageIcon("image/redwin.png"));
+				}
+				else if(p.getRobotR()!=null && i==p.getRobotR().getX() && j==p.getRobotR().getY()){
+					tmp.setIcon(new ImageIcon("image/red.png"));
+					tmp.setDisabledIcon(new ImageIcon("image/red.png"));
+				}
+				
+				if(p.robotinCible(Plateau.Color.J) && i==p.getRobotJ().getX() && j==p.getRobotJ().getY()){
+					tmp.setIcon(new ImageIcon("image/yellowin.png"));
+					tmp.setDisabledIcon(new ImageIcon("image/yellowin.png"));
+				}
+				else if(p.getRobotJ()!=null && i==p.getRobotJ().getX() && j==p.getRobotJ().getY()){
+					tmp.setIcon(new ImageIcon("image/yellow.png"));
+					tmp.setDisabledIcon(new ImageIcon("image/yellow.png"));
+				}
+
+
 				tmp.setPreferredSize(new Dimension(40,40));
 				tmp.setBorder(new MatteBorder(top, left, bot, right,new Color(0,0,0)));
 				plateau.add(tmp);
@@ -483,7 +505,7 @@ public class PlateauFrame extends JFrame {
 			j++;
 		}
 		for(String s : moves){
-			while(p.canMove(s)){
+			while(p.moveRobot(s)){
 			}
 			updateGraphics(p);
 

@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import Client.Client;
+import ClientManager.Client;
 
 /*
  * 
